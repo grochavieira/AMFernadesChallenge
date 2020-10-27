@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+
+import BuildingCard, { Building } from "../../components/BuildingCard";
 import api from "../../services/api";
 import "./styles.scss";
 
 const Home: React.FC = () => {
-  const [buildings, setBuildings] = useState({});
+  const [buildings, setBuildings] = useState<Building[]>([]);
 
   useEffect(() => {
     async function loadBuildings() {
@@ -17,7 +19,13 @@ const Home: React.FC = () => {
 
   return (
     <div className="home">
-      <h1 className="title">Desafio AM Fernades</h1>
+      <h1 className="home__title">Desafio AM Fernades</h1>
+
+      <div className="home__buildings">
+        {buildings.slice(0, 10).map((building: Building) => (
+          <BuildingCard building={building} />
+        ))}
+      </div>
     </div>
   );
 };
