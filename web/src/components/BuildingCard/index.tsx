@@ -1,30 +1,11 @@
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 
+import IBuilding from "../../interfaces/IBuilding";
 import "./styles.scss";
 
-export interface Building {
-  bairro: string;
-  cep: string;
-  cidade: string;
-  fachada: string;
-  // location: {
-  //   _lat: -23.6706885;
-  //   _long: -46.5379514;
-  // };
-  nome: string;
-  num: string;
-  rua: string;
-  // planta: {
-  //   dorms: 3;
-  //   metragem: 76;
-  //   preco: 465000;
-  //   vagas: 2;
-  // };
-}
-
 interface BuildingCardProps {
-  building: Building;
+  building: IBuilding;
 }
 
 const BuildingCard: React.FC<BuildingCardProps> = ({ building }) => {
@@ -38,6 +19,11 @@ const BuildingCard: React.FC<BuildingCardProps> = ({ building }) => {
         <p className="building-card__info__address">
           {building.cidade} - {building.bairro} <br /> {building.rua} n°
           {building.num}
+        </p>
+        <p className="building-card__info__price">
+          {typeof building.planta.preco === "number"
+            ? `R$ ${building.planta.preco}`
+            : building.planta.preco}
         </p>
 
         <button className="building-card__info__details">
