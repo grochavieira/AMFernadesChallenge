@@ -1,4 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { FaSort } from "react-icons/fa";
+import {
+  BounceLoader,
+  CircleLoader,
+  GridLoader,
+  RotateLoader,
+} from "react-spinners";
 
 import * as sortings from "../../utils/sortings";
 import IBuilding from "../../interfaces/IBuilding";
@@ -6,7 +13,6 @@ import BuildingCard from "../../components/BuildingCard";
 import Pagination from "../../components/Pagination";
 import api from "../../services/api";
 import "./styles.scss";
-import { FaSort } from "react-icons/fa";
 
 const Home: React.FC = () => {
   const [buildings, setBuildings] = useState<IBuilding[]>([]);
@@ -19,6 +25,7 @@ const Home: React.FC = () => {
   });
   const [activeSort, setActiveSort] = useState<string>("");
   const [sortType, setSortType] = useState("ascending");
+  const [isLoadingBuildings, setIsLoadingBuildings] = useState(true);
   const limitPerPage = 10;
 
   useEffect(() => {
@@ -60,12 +67,20 @@ const Home: React.FC = () => {
   useEffect(() => {
     setCurrentPage(1);
     window.scrollTo(0, 0);
+    setIsLoadingBuildings(true);
+    setTimeout(() => {
+      setIsLoadingBuildings(false);
+    }, 1000);
   }, [buildings]);
 
   useEffect(() => {
     const initial = currentPage * limitPerPage - limitPerPage;
     const final = currentPage * limitPerPage;
     setRange({ initial, final });
+    setIsLoadingBuildings(true);
+    setTimeout(() => {
+      setIsLoadingBuildings(false);
+    }, 1000);
   }, [currentPage]);
 
   function goBack() {
@@ -162,20 +177,26 @@ const Home: React.FC = () => {
       </div>
 
       <div className="home__buildings">
-        {buildings
-          .slice(range.initial, range.final)
-          .map((building: IBuilding) => (
-            <BuildingCard key={`${building.fachada}`} building={building} />
-          ))}
+        <GridLoader size={48} loading={isLoadingBuildings} />
+        {!isLoadingBuildings &&
+          buildings
+            .slice(range.initial, range.final)
+            .map((building: IBuilding) => (
+              <BuildingCard key={`${building.fachada}`} building={building} />
+            ))}
       </div>
-      <Pagination
-        setCurrentPage={setCurrentPage}
-        totalItems={totalItems}
-        currentPage={currentPage}
-        goBack={goBack}
-        goForward={goForward}
-        limitPerPage={limitPerPage}
-      />
+      {!isLoadingBuildings ? (
+        <Pagination
+          setCurrentPage={setCurrentPage}
+          totalItems={totalItems}
+          currentPage={currentPage}
+          goBack={goBack}
+          goForward={goForward}
+          limitPerPage={limitPerPage}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
