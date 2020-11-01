@@ -18,6 +18,7 @@ const Home: React.FC = () => {
     final: 10,
   });
   const [activeSort, setActiveSort] = useState("");
+  const [sortType, setSortType] = useState("ascending");
   const limitPerPage = 10;
 
   useEffect(() => {
@@ -98,7 +99,7 @@ const Home: React.FC = () => {
               name="NOME"
               activeSort={activeSort}
               onAction={() => {
-                setBuildings(sortings.name(originalBuildings));
+                setBuildings(sortings.name(originalBuildings, sortType));
                 setActiveSort("NOME");
               }}
             />
@@ -106,7 +107,7 @@ const Home: React.FC = () => {
               name="CIDADE"
               activeSort={activeSort}
               onAction={() => {
-                setBuildings(sortings.city(originalBuildings));
+                setBuildings(sortings.city(originalBuildings, sortType));
                 setActiveSort("CIDADE");
               }}
             />
@@ -117,7 +118,9 @@ const Home: React.FC = () => {
               name="BAIRRO"
               activeSort={activeSort}
               onAction={() => {
-                setBuildings(sortings.neighborhood(originalBuildings));
+                setBuildings(
+                  sortings.neighborhood(originalBuildings, sortType)
+                );
                 setActiveSort("BAIRRO");
               }}
             />
@@ -125,7 +128,7 @@ const Home: React.FC = () => {
               name="RUA"
               activeSort={activeSort}
               onAction={() => {
-                setBuildings(sortings.street(originalBuildings));
+                setBuildings(sortings.street(originalBuildings, sortType));
                 setActiveSort("RUA");
               }}
             />
@@ -133,10 +136,24 @@ const Home: React.FC = () => {
               name="PREÇO"
               activeSort={activeSort}
               onAction={() => {
-                setBuildings(sortings.price(originalBuildings));
+                setBuildings(sortings.price(originalBuildings, sortType));
                 setActiveSort("PREÇO");
               }}
             />
+          </div>
+          <div className="home__header__options__type">
+            <button
+              onClick={() => setSortType("ascending")}
+              className={sortType === "ascending" ? "active" : ""}
+            >
+              CRESCENTE
+            </button>
+            <button
+              onClick={() => setSortType("descending")}
+              className={sortType === "descending" ? "active" : ""}
+            >
+              DECRESCENTE
+            </button>
           </div>
         </div>
       </div>
