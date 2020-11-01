@@ -9,6 +9,15 @@ interface BuildingCardProps {
 }
 
 const BuildingCard: React.FC<BuildingCardProps> = ({ building }) => {
+  if (building.planta === undefined) {
+    building.planta = {
+      dorms: 0,
+      metragem: 0,
+      preco: 0,
+      vagas: 0,
+    };
+  }
+
   return (
     <div className="building-card">
       <div className="building-card__image">
@@ -20,11 +29,12 @@ const BuildingCard: React.FC<BuildingCardProps> = ({ building }) => {
           {building.cidade} - {building.bairro} <br /> {building.rua} n°
           {building.num}
         </p>
-        {/* <p className="building-card__info__price">
-          {building.planta.preco && typeof building.planta.preco === "number"
+        <p className="building-card__info__price">
+          {typeof building.planta.preco === "number" &&
+          building.planta.preco !== 0
             ? `R$ ${building.planta.preco}`
-            : building.planta.preco}
-        </p> */}
+            : "Preço indisponível"}
+        </p>
 
         <button className="building-card__info__details">
           Detalhes <FiArrowRight />{" "}

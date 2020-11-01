@@ -4,12 +4,17 @@ import "./styles.scss";
 
 interface SortButtonProps {
   name: string;
+  activeSort: string;
   onAction: () => void;
 }
 
-const SortButton: React.FC<SortButtonProps> = ({ name, onAction }) => {
+const SortButton: React.FC<SortButtonProps> = ({
+  name,
+  onAction,
+  activeSort,
+}) => {
   return (
-    <div className="btn-sort">
+    <div className={activeSort !== name ? "btn-sort" : "btn-sort active"}>
       <button onClick={onAction}>{name}</button>
     </div>
   );

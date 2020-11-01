@@ -3,8 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  padding-top: 20rem;
 
   &__header {
     width: 100%;
@@ -12,11 +10,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 1);
-    border-bottom: 2px solid var(--color-primary);
-    position: fixed;
-    top: 0;
-    z-index: 1000;
+    // background-color: rgba(255, 255, 255, 1);
+    // border-bottom: 2px solid var(--color-primary);
+    margin-bottom: 2rem;
 
     &__title {
       margin: 1rem 0 1rem 0;
@@ -33,7 +29,18 @@
 
     &__options {
       display: flex;
-      margin-bottom: 1rem;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 0.8rem;
+
+      &__first {
+        display: flex;
+      }
+
+      &__second {
+        display: flex;
+      }
     }
   }
 }

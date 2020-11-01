@@ -55,3 +55,19 @@ export function street(buildings: IBuilding[]) {
 
   return [...sortedBuildings];
 }
+
+export function price(buildings: IBuilding[]) {
+  const copyBuildings = [...buildings];
+  const sortedBuildings = copyBuildings.sort(
+    ({ planta }: IBuilding, { planta: planta2 }: IBuilding) => {
+      const { preco } = planta;
+      const { preco: preco2 } = planta2;
+      if (preco < preco2) return 1;
+      if (preco > preco2) return -1;
+
+      return 0;
+    }
+  );
+
+  return [...sortedBuildings];
+}

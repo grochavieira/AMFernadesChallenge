@@ -59,6 +59,10 @@ const Pagination: React.FC<PaginationProps> = ({
     }
   }
 
+  if (totalItems === 0) {
+    return <div></div>;
+  }
+
   return (
     <div className="pagination">
       <button

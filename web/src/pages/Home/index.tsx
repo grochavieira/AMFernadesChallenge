@@ -17,33 +17,55 @@ const Home: React.FC = () => {
     initial: 0,
     final: 10,
   });
+  const [activeSort, setActiveSort] = useState("");
   const limitPerPage = 10;
 
   useEffect(() => {
     async function loadBuildings() {
       let { data } = await api.get("/imoveis");
-      data = data.map((item: IBuilding) => {
-        if (item.nome === "Move") {
-          item.planta.preco = 1000000;
+      const arrangeData = data.map((item: IBuilding) => {
+        if (item.planta === undefined) {
+          item.planta = {
+            dorms: 0,
+            metragem: 0,
+            preco: 0,
+            vagas: 0,
+          };
         }
+        item.nome = item.nome.trim();
+        item.bairro = item.bairro.trim();
+        item.rua = item.rua.trim();
+        item.cidade = item.cidade.trim();
         return item;
       });
-      setBuildings(data);
-      setOriginalBuildings([...data]);
-      setTotalItems(data.length);
+
+      const cleanedData = arrangeData.filter(
+        (item: IBuilding, index: number) => {
+          const indexOfItem = arrangeData.findIndex(
+            (subitem: IBuilding) => subitem.nome === item.nome
+          );
+          return indexOfItem === index;
+        }
+      );
+      setBuildings(cleanedData);
+      setOriginalBuildings([...cleanedData]);
+      setTotalItems(cleanedData.length);
       setCurrentPage(1);
-      console.log(data);
+      console.log(cleanedData);
     }
 
     loadBuildings();
   }, []);
 
   useEffect(() => {
+    setCurrentPage(1);
+    window.scrollTo(0, 0);
+  }, [buildings]);
+
+  useEffect(() => {
     const initial = currentPage * limitPerPage - limitPerPage;
     const final = currentPage * limitPerPage;
     setRange({ initial, final });
-    console.log(range);
-    console.log(totalItems);
   }, [currentPage]);
 
   function goBack() {
@@ -67,28 +89,55 @@ const Home: React.FC = () => {
       <div className="home__header">
         <h1 className="home__header__title">Desafio AM Fernades</h1>
         <p className="home__header__description">
-          Escolha uma das opções abaixo para realizar a ordenação dos dados{" "}
+          Escolha uma das opções abaixo para ordenar os dados:
         </p>
 
         <div className="home__header__options">
-          <SortButton
-            name="NOME"
-            onAction={() => setBuildings(sortings.name(originalBuildings))}
-          />
-          <SortButton
-            name="CIDADE"
-            onAction={() => setBuildings(sortings.city(originalBuildings))}
-          />
-          <SortButton
-            name="BAIRRO"
-            onAction={() =>
-              setBuildings(sortings.neighborhood(originalBuildings))
-            }
-          />
-          <SortButton
-            name="RUA"
-            onAction={() => setBuildings(sortings.street(originalBuildings))}
-          />
+          <div className="home__header__options__first">
+            <SortButton
+              name="NOME"
+              activeSort={activeSort}
+              onAction={() => {
+                setBuildings(sortings.name(originalBuildings));
+                setActiveSort("NOME");
+              }}
+            />
+            <SortButton
+              name="CIDADE"
+              activeSort={activeSort}
+              onAction={() => {
+                setBuildings(sortings.city(originalBuildings));
+                setActiveSort("CIDADE");
+              }}
+            />
+          </div>
+
+          <div className="home__header__options__second">
+            <SortButton
+              name="BAIRRO"
+              activeSort={activeSort}
+              onAction={() => {
+                setBuildings(sortings.neighborhood(originalBuildings));
+                setActiveSort("BAIRRO");
+              }}
+            />
+            <SortButton
+              name="RUA"
+              activeSort={activeSort}
+              onAction={() => {
+                setBuildings(sortings.street(originalBuildings));
+                setActiveSort("RUA");
+              }}
+            />
+            <SortButton
+              name="PREÇO"
+              activeSort={activeSort}
+              onAction={() => {
+                setBuildings(sortings.price(originalBuildings));
+                setActiveSort("PREÇO");
+              }}
+            />
+          </div>
         </div>
       </div>
 
