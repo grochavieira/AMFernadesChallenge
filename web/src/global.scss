@@ -22,7 +22,11 @@ html {
 body {
   height: 100vh;
   font-family: Roboto, sans-serif;
-  background: linear-gradient(to bottom, #ffffff30, #edf2f430), url("./images/background1.jpg") no-repeat fixed;
+  background: url("./images/background1.jpg") no-repeat fixed;
   background-size: cover;
   background-position: fixed;
+}
+
+button {
+  font-family: Roboto;
 }

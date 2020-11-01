@@ -3,16 +3,37 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  padding-top: 20rem;
 
-  &__title {
-    margin: 2rem 0 1rem 0;
-    font-size: 4rem;
-    font-family: Karla;
-    color: var(--color-primary);
-  }
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    border-bottom: 2px solid var(--color-primary);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 
-  &__description {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+    &__title {
+      margin: 1rem 0 1rem 0;
+      font-size: 3rem;
+      font-family: Karla;
+      color: var(--color-primary);
+    }
+
+    &__description {
+      margin-left: 2rem;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    &__options {
+      display: flex;
+      margin-bottom: 1rem;
+    }
   }
 }
