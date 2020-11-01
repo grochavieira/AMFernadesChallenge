@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import * as sortings from "../../utils/sortings";
 import IBuilding from "../../interfaces/IBuilding";
 import BuildingCard from "../../components/BuildingCard";
-import SortButton from "../../components/SortButton";
 import Pagination from "../../components/Pagination";
 import api from "../../services/api";
 import "./styles.scss";
+import { FaSort } from "react-icons/fa";
 
 const Home: React.FC = () => {
   const [buildings, setBuildings] = useState<IBuilding[]>([]);
@@ -17,7 +17,7 @@ const Home: React.FC = () => {
     initial: 0,
     final: 10,
   });
-  const [activeSort, setActiveSort] = useState("");
+  const [activeSort, setActiveSort] = useState<string>("");
   const [sortType, setSortType] = useState("ascending");
   const limitPerPage = 10;
 
@@ -52,7 +52,6 @@ const Home: React.FC = () => {
       setOriginalBuildings([...cleanedData]);
       setTotalItems(cleanedData.length);
       setCurrentPage(1);
-      console.log(cleanedData);
     }
 
     loadBuildings();
@@ -85,61 +84,60 @@ const Home: React.FC = () => {
     window.scrollTo(0, 0);
   }
 
+  function hasKey<O>(obj: O, key: keyof any): key is keyof O {
+    return key in obj;
+  }
+
+  function sortItems() {
+    if (hasKey(sortings, activeSort)) {
+      const sortFunction = sortings[activeSort];
+      const sortedBuildings = sortFunction(originalBuildings, sortType);
+      setBuildings(sortedBuildings);
+    } else {
+      alert("Por favor, selecione um dos campos acima para ordenar os dados!");
+    }
+  }
+
   return (
     <div className="home">
       <div className="home__header">
         <h1 className="home__header__title">Desafio AM Fernades</h1>
         <p className="home__header__description">
-          Escolha uma das opções abaixo para ordenar os dados:
+          Selecione o campo que deve ser ordenado e o tipo de ordenação:
         </p>
 
         <div className="home__header__options">
-          <div className="home__header__options__first">
-            <SortButton
-              name="NOME"
-              activeSort={activeSort}
-              onAction={() => {
-                setBuildings(sortings.name(originalBuildings, sortType));
-                setActiveSort("NOME");
-              }}
-            />
-            <SortButton
-              name="CIDADE"
-              activeSort={activeSort}
-              onAction={() => {
-                setBuildings(sortings.city(originalBuildings, sortType));
-                setActiveSort("CIDADE");
-              }}
-            />
-          </div>
-
-          <div className="home__header__options__second">
-            <SortButton
-              name="BAIRRO"
-              activeSort={activeSort}
-              onAction={() => {
-                setBuildings(
-                  sortings.neighborhood(originalBuildings, sortType)
-                );
-                setActiveSort("BAIRRO");
-              }}
-            />
-            <SortButton
-              name="RUA"
-              activeSort={activeSort}
-              onAction={() => {
-                setBuildings(sortings.street(originalBuildings, sortType));
-                setActiveSort("RUA");
-              }}
-            />
-            <SortButton
-              name="PREÇO"
-              activeSort={activeSort}
-              onAction={() => {
-                setBuildings(sortings.price(originalBuildings, sortType));
-                setActiveSort("PREÇO");
-              }}
-            />
+          <div className="home__header__options__items">
+            <button
+              className={activeSort === "name" ? "selected" : ""}
+              onClick={() => setActiveSort("name")}
+            >
+              NOME
+            </button>
+            <button
+              className={activeSort === "city" ? "selected" : ""}
+              onClick={() => setActiveSort("city")}
+            >
+              CIDADE
+            </button>
+            <button
+              className={activeSort === "neighborhood" ? "selected" : ""}
+              onClick={() => setActiveSort("neighborhood")}
+            >
+              BAIRRO
+            </button>
+            <button
+              className={activeSort === "street" ? "selected" : ""}
+              onClick={() => setActiveSort("street")}
+            >
+              RUA
+            </button>
+            <button
+              className={activeSort === "price" ? "selected" : ""}
+              onClick={() => setActiveSort("price")}
+            >
+              PREÇO
+            </button>
           </div>
           <div className="home__header__options__type">
             <button
@@ -153,6 +151,11 @@ const Home: React.FC = () => {
               className={sortType === "descending" ? "active" : ""}
             >
               DECRESCENTE
+            </button>
+          </div>
+          <div className="home__header__options__search">
+            <button onClick={sortItems}>
+              <FaSort /> ORDENAR ITEMS
             </button>
           </div>
         </div>
