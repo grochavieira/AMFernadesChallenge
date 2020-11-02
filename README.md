@@ -16,11 +16,11 @@
  
 </p>
 <h1 align="center">
-    Desafio AMFernandes
+    Desafio AM Fernandes
 </h1>
 
 <h4 align="center"> 
-	🚧  Aplicação em Desenvolvimento... 🚧
+	🚧  Aplicação Finalizada 🚧
 </h4>
 
 ## 🏁 Tópicos
@@ -45,9 +45,62 @@ Uma página que faz requisição a API disponibilizada pela AM Fernandes e orden
 
 ## ⚙️ Funcionalidades
 
+- [x] Pagina Home
+  - [x] Você pode realizar a ordenação dos dados:
+    - [x] Escolhendo um dos seguintes campos (nome, cidade, bairro, rua e preço);
+    - [x] Escolhendo a forma como serão ordenados (crescente ou decrescente);
+    - [x] Pressionando o botão de ordenar items.
+  - [x] Nos blocos dos prédios são apresentados:
+    - [x] Algumas informações sobre o prédio (endereço, preço e faixada);
+    - [x] Um botão que redireciona para a página de Detalhes.
+  - [x] Tem um sistema de paginação que:
+    - [x] Apresenta 10 items por página;
+    - [x] Pode ser modificado pela variável limitPerPage.
+  - [x] Tem uma indicação de loading para os blocos dos prédios quando:
+    - [x] O usuário acessa a página pela primeira vez (ou atualiza);
+    - [x] Quando os items são ordenados;
+    - [x] Quando uma página é selecionada.
+- [x] Pagina de Detalhes
+  - [x] Apresenta um bloco contendo:
+    - [x] Nome do prédio;
+    - [x] Dados da Planta, se existir;
+    - [x] Dados da Localização;
+    - [x] Botão que redireciona para o google maps, apresentado as rotas da localização atual do usuário até o prédio em questão.
+  - [x] Tem uma indicação de loading para o bloco quando a página é apresentada.
+
 ---
 
 ## 🎨 Layout
+
+### Home
+
+<div align="center">
+    <img width="100%" src="./assets/home_demonstration.gif" />
+</div>
+
+### Ordenação
+
+<div align="center">
+    <img width="100%" src="./assets/sorting_demonstration.gif" />
+</div>
+
+### Paginação
+
+<div align="center">
+    <img width="100%" src="./assets/pagination_demonstration.gif" />
+</div>
+
+### Detalhes
+
+<div align="center">
+    <img width="100%" src="./assets/details_demonstration.gif" />
+</div>
+
+### Google Maps
+
+<div align="center">
+    <img width="100%" src="./assets/googlemaps_demonstration.gif" />
+</div>
 
 ---
 
@@ -97,6 +150,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[React Router Dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)**
 - **[Axios](https://github.com/axios/axios)**
 - **[React Icons](https://react-icons.github.io/react-icons/)**
+- **[React Spinners](https://github.com/davidhu2000/react-spinners)**
 - **[SCSS](https://sass-lang.com/)**
 
 > Veja o arquivo [package.json](https://github.com/grochavieira/AMFernandesChallenge/blob/master/web/package.json)
@@ -105,8 +159,8 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 - Editor: **[Visual Studio Code](https://code.visualstudio.com/)**
 - Teste de API: **[Insomnia](https://insomnia.rest/)**
-- Ícones: **[Feather Icons](https://feathericons.com/)**
-- Fontes: **[Karla](https://fonts.google.com/specimen/Karla)**, **[Robto](https://fonts.google.com/specimen/Robto)**
+- Ícones: **[Feather Icons](https://feathericons.com/)**, **[Font Awesome](https://fontawesome.com/)**
+- Fontes: **[Karla](https://fonts.google.com/specimen/Karla)**, **[Roboto](https://fonts.google.com/specimen/Robto)**
 
 ---
 
