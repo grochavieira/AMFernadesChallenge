@@ -51,7 +51,7 @@ Uma página que faz requisição a API disponibilizada pela AM Fernandes e orden
     - [x] Escolhendo a forma como serão ordenados (crescente ou decrescente);
     - [x] Pressionando o botão de ordenar items.
   - [x] Nos blocos dos prédios são apresentados:
-    - [x] Algumas informações sobre o prédio (endereço, preço e faixada);
+    - [x] Algumas informações sobre o prédio (endereço, preço e fachada);
     - [x] Um botão que redireciona para a página de Detalhes.
   - [x] Tem um sistema de paginação que:
     - [x] Apresenta 10 items por página;
