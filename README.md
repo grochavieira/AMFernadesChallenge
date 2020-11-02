@@ -37,7 +37,7 @@
 
 ## 💻 Sobre o projeto
 
-Uma página que faz requisição a API disponibilizada pela AM Fernandes e ordena os dados de acordo com algum critério estabelecido
+Uma página que faz requisição a API disponibilizada pela AM Fernandes e ordena os dados de acordo com alguns campos dos edifícios de forma crescente ou decrescente.
 
 ---
 
