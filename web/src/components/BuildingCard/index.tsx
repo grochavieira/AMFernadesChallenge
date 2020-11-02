@@ -1,5 +1,6 @@
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
+import { useHistory } from "react-router-dom";
 
 import IBuilding from "../../interfaces/IBuilding";
 import "./styles.scss";
@@ -9,6 +10,8 @@ interface BuildingCardProps {
 }
 
 const BuildingCard: React.FC<BuildingCardProps> = ({ building }) => {
+  const history = useHistory();
+
   if (building.planta === undefined) {
     building.planta = {
       dorms: 0,
@@ -16,6 +19,10 @@ const BuildingCard: React.FC<BuildingCardProps> = ({ building }) => {
       preco: 0,
       vagas: 0,
     };
+  }
+
+  function navigateToDetails() {
+    history.push("/details", { building });
   }
 
   return (
@@ -36,7 +43,10 @@ const BuildingCard: React.FC<BuildingCardProps> = ({ building }) => {
             : "Preço indisponível"}
         </p>
 
-        <button className="building-card__info__details">
+        <button
+          onClick={navigateToDetails}
+          className="building-card__info__details"
+        >
           Detalhes <FiArrowRight />{" "}
         </button>
       </div>

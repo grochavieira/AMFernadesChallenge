@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaSort } from "react-icons/fa";
-import {
-  BounceLoader,
-  CircleLoader,
-  GridLoader,
-  RotateLoader,
-} from "react-spinners";
+import { GridLoader } from "react-spinners";
 
 import * as sortings from "../../utils/sortings";
 import IBuilding from "../../interfaces/IBuilding";
