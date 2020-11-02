@@ -53,7 +53,9 @@
       align-items: center;
       width: 100%;
       background-color: transparent;
-      background-color: #ccc;
+      background-color: #ddd;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
 
       img {
         height: 30rem;
@@ -107,7 +109,7 @@
 
         &__route {
           margin-top: 2rem;
-          padding: 1rem 2rem;
+          padding: 1.5rem 2rem;
           text-align: center;
           text-decoration: none;
           color: #fff;

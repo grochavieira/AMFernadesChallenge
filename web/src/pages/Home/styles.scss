@@ -43,6 +43,8 @@
         border-top: 2px solid var(--color-accent-1);
         border-left: 2px solid var(--color-accent-1);
         border-right: 2px solid var(--color-accent-1);
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
 
         button {
           border: 0;
@@ -74,6 +76,14 @@
           font-weight: bold;
           cursor: pointer;
           transition: all 0.2s;
+
+          &:first-child {
+            border-bottom-left-radius: 0.5rem;
+          }
+
+          &:last-child {
+            border-bottom-right-radius: 0.5rem;
+          }
 
           &.active {
             background-color: var(--color-accent-1);

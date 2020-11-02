@@ -25,35 +25,39 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     async function loadBuildings() {
-      let { data } = await api.get("/imoveis");
-      const arrangeData = data.map((item: IBuilding) => {
-        if (item.planta === undefined) {
-          item.planta = {
-            dorms: 0,
-            metragem: 0,
-            preco: 0,
-            vagas: 0,
-          };
-        }
-        item.nome = item.nome.trim();
-        item.bairro = item.bairro.trim();
-        item.rua = item.rua.trim();
-        item.cidade = item.cidade.trim();
-        return item;
-      });
+      try {
+        let { data } = await api.get("/imoveis");
+        const arrangeData = data.map((item: IBuilding) => {
+          if (item.planta === undefined) {
+            item.planta = {
+              dorms: 0,
+              metragem: 0,
+              preco: 0,
+              vagas: 0,
+            };
+          }
+          item.nome = item.nome.trim();
+          item.bairro = item.bairro.trim();
+          item.rua = item.rua.trim();
+          item.cidade = item.cidade.trim();
+          return item;
+        });
 
-      const cleanedData = arrangeData.filter(
-        (item: IBuilding, index: number) => {
-          const indexOfItem = arrangeData.findIndex(
-            (subitem: IBuilding) => subitem.nome === item.nome
-          );
-          return indexOfItem === index;
-        }
-      );
-      setBuildings(cleanedData);
-      setOriginalBuildings([...cleanedData]);
-      setTotalItems(cleanedData.length);
-      setCurrentPage(1);
+        const cleanedData = arrangeData.filter(
+          (item: IBuilding, index: number) => {
+            const indexOfItem = arrangeData.findIndex(
+              (subitem: IBuilding) => subitem.nome === item.nome
+            );
+            return indexOfItem === index;
+          }
+        );
+        setBuildings(cleanedData);
+        setOriginalBuildings([...cleanedData]);
+        setTotalItems(cleanedData.length);
+        setCurrentPage(1);
+      } catch (e) {
+        alert("Não foi possível obter os dados da API");
+      }
     }
 
     loadBuildings();

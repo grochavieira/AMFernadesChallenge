@@ -53,7 +53,7 @@ const Details: React.FC<DetailsProps> = ({
                 <br />
                 <strong>Metragem: </strong>
                 {building.planta.metragem
-                  ? building.planta.metragem
+                  ? `${building.planta.metragem} m²`
                   : "Informação indisponível"}
                 <br />
                 <strong>Preço: </strong>
@@ -72,17 +72,17 @@ const Details: React.FC<DetailsProps> = ({
             <div className="details__main__info__label">
               <h2>Localização</h2>
               <p className="details__main__info__label__address">
-                <strong>Cidade:</strong>
+                <strong>Cidade: </strong>
                 {building.cidade ? building.cidade : "Informação indisponível"}
                 <br />
-                <strong>Bairro:</strong>
+                <strong>Bairro: </strong>
                 {building.bairro ? building.bairro : "Informação indisponível"}
                 <br />
-                <strong>Rua:</strong>
+                <strong>Rua: </strong>
                 {building.rua ? building.rua : "Informação indisponível"}
-                <strong>n° </strong>
+                <strong> n° </strong>
                 {building.num ? building.num : "Informação indisponível"} <br />
-                <strong>CEP:</strong>
+                <strong>CEP: </strong>
                 {building.cep ? building.cep : "Informação indisponível"}
               </p>
 
