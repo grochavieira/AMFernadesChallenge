@@ -1,10 +1,10 @@
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/grochavieira/AMFernandesChallenge?color=%2304D361&style=for-the-badge">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/grochavieira/am-fernandes-challenge?color=%2304D361&style=for-the-badge">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/grochavieira/AMFernandesChallenge?style=for-the-badge">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/grochavieira/am-fernandes-challenge?style=for-the-badge">
   
-  <a href="https://github.com/grochavieira/AMFernandesChallenge/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/grochavieira/AMFernandesChallenge?style=for-the-badge">
+  <a href="https://github.com/grochavieira/am-fernandes-challenge/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/grochavieira/am-fernandes-challenge?style=for-the-badge">
   </a>
     
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen?style=for-the-badge">
@@ -121,10 +121,10 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/grochavieira/AMFernandesChallenge.git
+$ git clone https://github.com/grochavieira/am-fernandes-challenge.git
 
 # Acesse a pasta do projeto no seu terminal/cmd
-$ cd AMFernandesChallenge
+$ cd am-fernandes-challenge
 
 # Vá para a pasta da aplicação Front End
 $ cd web
@@ -153,7 +153,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[React Spinners](https://github.com/davidhu2000/react-spinners)**
 - **[SCSS](https://sass-lang.com/)**
 
-> Veja o arquivo [package.json](https://github.com/grochavieira/AMFernandesChallenge/blob/master/web/package.json)
+> Veja o arquivo [package.json](https://github.com/grochavieira/am-fernandes-challenge/blob/master/web/package.json)
 
 #### **Utilitários**
 
